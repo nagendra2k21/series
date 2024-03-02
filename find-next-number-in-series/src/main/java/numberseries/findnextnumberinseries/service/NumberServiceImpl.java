@@ -1,18 +1,16 @@
 package numberseries.findnextnumberinseries.service;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import numberseries.findnextnumberinseries.entity.nextnumDetails;
-import numberseries.findnextnumberinseries.utils.MathCustomfunctions;
 
 @Service
 public class NumberServiceImpl implements NumberService {
 	
-	
-	@Autowired
-	private MathCustomfunctions mathCustfunc;
+//	
+//	@Autowired
+//	private MathCustomfunctions mathCustfunc;
 
 	public static Double computeNextTerm=999.298;
 	public static String nameOfSeries =null; 
