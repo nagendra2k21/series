@@ -163,6 +163,48 @@ public class NumberServiceImpl implements NumberService {
 		     	}	
 		});
 		
+		Thread RGPseriesCheckThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				float firstTerm=(float) arr[0];
+				float rdiff;
+				int termInd;
+				boolean inSeries = true;
+				
+				try {
+					rdiff=(float) arr[1]/ (float) arr[0];
+				} catch (Exception e) {
+					rdiff=1;
+				   System.out.println(e.getMessage());
+				}
+				System.out.println("RGp started---------------");
+				System.out.println("RGP->Compute next term value="+computeNextTerm);
+				System.out.println("Inside RGP -> Stopthread INITIAL value="+arr[6]);
+				for(termInd=2;termInd<=6;termInd++) {
+					float termVal=(float) (firstTerm*(Math.pow(rdiff, termInd-1)));
+					if (termVal != (float) arr[termInd-1]) {
+						System.out.println("Inside RGP Before break-> Stopthread value="+arr[6]);
+						inSeries = false;
+						break;
+					}		
+				}
+				if (inSeries){
+					System.out.println("Calcualting ComputeNextTerm");
+					computeNextTerm=(Double)(firstTerm*(Math.pow(rdiff, termInd-1)));
+					termInd++;
+					nameOfSeries="Reverse Geometric Progression Series";
+					formulaName="(firstTerm*(Math.pow(rdiff, termInd-1)))";
+					NextTerm1=(double) (firstTerm*(Math.pow(rdiff, termInd-1)));
+					termInd++;
+					NextTerm2=(double) (firstTerm*(Math.pow(rdiff, termInd-1)));
+				
+					
+				}
+				System.out.println("At the end inside GP-> Stopthread value="+arr[6]);
+				System.out.println("At the end inside GP-> Compute next term value="+computeNextTerm);
+		     	}	
+		});
+		
 		Thread FIBseriesCheckThread  = new Thread(new Runnable() {
 
 			@Override
@@ -238,12 +280,14 @@ public class NumberServiceImpl implements NumberService {
 		GPseriesCheckThread.start();
 		FIBseriesCheckThread.start();
 		PRIMEseriesCheckThread.start();
+		RGPseriesCheckThread.start();
 
 		//PowerseriesCheckThread.join();
 		APseriesCheckThread.join();
 		GPseriesCheckThread.join();
 		FIBseriesCheckThread.join();
 		PRIMEseriesCheckThread.join();
+		RGPseriesCheckThread.join();
 		
 		if (computeNextTerm!=999.298) {
 			Double temp=computeNextTerm;
