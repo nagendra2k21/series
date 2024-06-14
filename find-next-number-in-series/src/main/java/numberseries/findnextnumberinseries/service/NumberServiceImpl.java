@@ -163,6 +163,7 @@ public class NumberServiceImpl implements NumberService {
 		     	}	
 		});
 		
+		//Reverse Geometric Progression, to work on the series.
 		Thread RGPseriesCheckThread = new Thread(new Runnable() {
 			@Override
 			public void run() {
