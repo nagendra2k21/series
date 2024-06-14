@@ -8,9 +8,6 @@ import numberseries.findnextnumberinseries.entity.nextnumDetails;
 @Service
 public class NumberServiceImpl implements NumberService {
 	
-//	
-//	@Autowired
-//	private MathCustomfunctions mathCustfunc;
 
 	public static Double computeNextTerm=999.298;
 	public static String nameOfSeries =null; 
@@ -24,26 +21,8 @@ public class NumberServiceImpl implements NumberService {
 
 		int []  arr = {a,b,c,d,e,f,g};
 		
-//		class SharedVar {
-//		    private Double nextTerm;
-//		    private final Object lock = new Object();
-//
-//		    public void newMessage(Double x) {
-//		        synchronized (lock) {
-//		        	nextTerm = x;
-//		        }
-//		    }
-//
-//		    public Double getMessage() {
-//		        synchronized (lock) {
-//		            Double temp = nextTerm;
-//		            nextTerm = null;
-//		            return temp;
-//		        }
-//		    }
-//		}
 		
-		/*
+		
 		Thread PowerseriesCheckThread = new Thread (new Runnable() {
 		
 			@Override
@@ -83,7 +62,7 @@ public class NumberServiceImpl implements NumberService {
 			System.out.println("At the end inside PowerSeries-> Compute next term value="+computeNextTerm);
 		}	
 	});   
-		*/
+		
 		Thread APseriesCheckThread = new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -276,14 +255,14 @@ public class NumberServiceImpl implements NumberService {
 
 		
 
-		//PowerseriesCheckThread.start();
+		PowerseriesCheckThread.start();
 		APseriesCheckThread.start();
 		GPseriesCheckThread.start();
 		FIBseriesCheckThread.start();
 		PRIMEseriesCheckThread.start();
 		RGPseriesCheckThread.start();
 
-		//PowerseriesCheckThread.join();
+		PowerseriesCheckThread.join();
 		APseriesCheckThread.join();
 		GPseriesCheckThread.join();
 		FIBseriesCheckThread.join();
